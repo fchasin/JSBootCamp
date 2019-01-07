@@ -14,6 +14,16 @@ const saveTodos = function (todos) {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// Button to remove a todo
+const removeButton = function (id) {
+    const todoIndex = todos.filter((todo) => {
+        return todo.id === id
+    })
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
+    }
+}
+
 // Render application todos based on filters
 const renderTodos = function (todos, filters) {
     const filteredTodos = todos.filter(function (todo) {
@@ -36,9 +46,28 @@ const renderTodos = function (todos, filters) {
 
 // Get the DOM elements for an individual note
 const generateTodoDOM = function (todo) {
-    const p = document.createElement('p')
-    p.textContent = todo.text
-    return p
+    const todoEl = document.createElement('div')
+    const checkbox = document.createElement('input')
+    const todoText = document.createElement('span');
+    const button = document.createElement('button');
+
+    //set up checkbox
+    checkbox.setAttribute('type', 'checkbox');
+    todoEl.appendChild(checkbox);
+
+    // setup todo text
+    todoText.textContent = todo.text;
+    todoEl.appendChild(todoText)
+
+    // button setup
+    button.textContent = 'x';
+    todoEl.appendChild(button)
+    button.addEventListener('click', () => {
+        removeButton(todo.id);
+        renderTodos(todos, filters)
+    })
+
+    return todoEl 
 }
 
 // Get the DOM elements for list summary
