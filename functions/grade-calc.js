@@ -1,7 +1,7 @@
 // student score, total possible score
 
-let gradeCalc = (student, possible) => {
-    let percent = student/possible *100;
+const gradeCalc = (student, possible) => {
+    const percent = student/possible *100;
     let grade;
     if (percent >= 90) {
         grade = "A"
@@ -17,3 +17,5 @@ let gradeCalc = (student, possible) => {
 
     return `Your score was ${percent}% and your grade was ${grade}!`;
 }
+
+const result = gradeCalc(0, 25);
