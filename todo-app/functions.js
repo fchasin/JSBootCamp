@@ -16,9 +16,10 @@ const saveTodos = function (todos) {
 
 // Button to remove a todo
 const removeButton = function (id) {
-    const todoIndex = todos.filter((todo) => {
+    const todoIndex = todos.findIndex((todo) => {
         return todo.id === id
     })
+    debugger
     if (todoIndex > -1) {
         todos.splice(todoIndex, 1)
     }
@@ -64,6 +65,7 @@ const generateTodoDOM = function (todo) {
     todoEl.appendChild(button)
     button.addEventListener('click', () => {
         removeButton(todo.id);
+        saveTodos(todos)
         renderTodos(todos, filters)
     })
 
