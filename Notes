@@ -1,1 +1,11 @@
 lecture 66- debugging
+
+Levture 71 The edit page
+    - location: contains metainformation about the url, and locaiton of webpage
+    assign method: call on the locaiton object, will redirect the to another route
+
+Lecture 73 
+    storage event fires only when local storage changes
+
+Lecture 74
+    unix epoch midnight 1970, pos integers in ms for after this date, negative for before.
