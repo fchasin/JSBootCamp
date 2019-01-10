@@ -1,21 +1,19 @@
+'use strict';
+
 // Read existing notes from localStorage
-const getSavedNotes = function() {
+const getSavedNotes = () => {
   const notesJSON = localStorage.getItem('notes');
 
-  if (notesJSON !== null) {
-    return JSON.parse(notesJSON);
-  } else {
-    return [];
-  }
+  return notesJSON !== null ? JSON.parse(notesJSON) : [];
 };
 
 // Save the notes to localStorage
-const saveNotes = function(notes) {
+const saveNotes = notes => {
   localStorage.setItem('notes', JSON.stringify(notes));
 };
 
 // remove notes
-const removeNote = function(id) {
+const removeNote = id => {
   const noteIndex = notes.findIndex(note => {
     return note.id === id;
   });
@@ -25,7 +23,7 @@ const removeNote = function(id) {
 };
 
 // Generate the DOM structure for a note
-const generateNoteDOM = function(note) {
+const generateNoteDOM = note => {
   const noteEl = document.createElement('div');
   const textEl = document.createElement('a');
   const button = document.createElement('button');
@@ -49,24 +47,49 @@ const generateNoteDOM = function(note) {
   return noteEl;
 };
 
-// Render application notes
-const renderNotes = function(notes, filters) {
-  const filteredNotes = notes.filter(function(note) {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
+// Sort the notes
+const sortNotes = (notes, sortBy) => {
+  if (sortBy === 'byEdited') {
+    return notes.sort((a, b) => {
+      if (a.updatedAt > b.updatedAt) {
+        return -1;
+      } else if (a.updatedAt < b.updatedAt) {
+        return 1;
+      } else return 0;
+    });
+  } else if (sortBy === 'byCreated') {
+    return notes.sort((a, b) => {
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      } else if (a.createdAt > b.createdAt) {
+        return 1;
+      } else return 0;
+    });
+  } else if (sortBy === 'alphabetical') {
+    return notes.sort((a, b) => {
+      if (a.title.towLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      } else if (a.title.towLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      } else return 0;
+    });
+  }
+};
 
+// Render application notes
+const renderNotes = (notes, filters) => {
+  notes = sortNotes(notes, filters.sortBy);
+  const filteredNotes = notes.filter(note =>
+    note.title.toLowerCase().includes(filters.searchText.toLowerCase())
+  );
   document.querySelector('#notes').innerHTML = '';
 
-  filteredNotes.forEach(function(note) {
+  filteredNotes.forEach(note => {
     const noteEl = generateNoteDOM(note);
     document.querySelector('#notes').appendChild(noteEl);
   });
 };
 
-// moment work
-const bday = moment();
-bday.date('2');
-bday.month('May');
-bday.year('1994');
-
-console.log(bday.format('MMMM Do, YYYY'));
+const generateLastEdited = timestamp => {
+  return `Last edited ${moment(timestamp).fromNow()}`;
+};

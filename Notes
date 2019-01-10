@@ -9,3 +9,15 @@ Lecture 73
 
 Lecture 74
     unix epoch midnight 1970, pos integers in ms for after this date, negative for before.
+
+Lecure 80+81
+    arrow functions do not bind arguments or the this value
+
+Lecture 85
+    - throwing errors using error keyword will give us a stack trace of where the error is coming from
+    - helpful when we have nested call, or a large call stack that needs to be parsed
+    - catch block only runs when the file throws an error
+
+Lecutre 89 - OOP
+    - object oriented programming is the use of classes, instances, constructors inheritnace
+    etc to crate a programming paradigm
