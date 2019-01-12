@@ -21,3 +21,47 @@ Lecture 85
 Lecutre 89 - OOP
     - object oriented programming is the use of classes, instances, constructors inheritnace
     etc to crate a programming paradigm
+
+Lecture 90 - OOP Cont'd
+    - constructor uses the new keyword
+    new operator
+        - generates new empty object for this instances
+        - gives us accesss in the constructor function via the this keyword
+            - this refers to new empty object
+    - convention is to give uppercase to define a constructor function
+    - the instance of the constructor is crreated and then the function returns that object as its return value
+
+Lecture 91
+    *** thiss minute 13 arrow function don't bind this, so yo ucan use arrow functions w./in methods sometimes, if you want this to bind
+    to the parent method, and not to the function when you're calling it
+
+    prototypal inheritance: move up the chain: first look in the the constructor, then look in the prototype properties.
+
+    doesn't matter if you change the prototype after the instance is created,
+    in Java, this is different- the prtotypal properties are copied when hte instance is instantiated, js is dif, it's just a reference., so it can change
+
+Lecture 94
+    - great discussion of prototypal inheritance beginning around 6' 
+    using {} creates a new instance of object, which has a proto property, which has properties and methods on it
+    - we  can change properties on the objecet prototype, but that's a terrible idea
+    - literal syntax: when the syntax allows us to define a type using characters, ex using 
+        *** this is why we don't need to use the new keyword to instantiate a new instance of an object, we can just use curly braces
+        ex: saying const product = new Object() is the same as const product = {}
+
+Lecture 95 - primitives and objects part II =focused on 
+    everythging that's not a primitive is an object
+    - an array is nothing mroe than a customized version of a property
+        inheritnace chain: anArray --> Array.prototype --> Object.prototype --> null
+        const newArray = new Array(['me', 'you'])
+
+    - when we access methods on a primitive, js wraps the prim in an object wrapper of type string, number, etc.
+    - can also instantiante with new String constructor
+
+Lecture 100 - class and subclasses
+    - syntactical sugar to create objects of a class
+    - use extends keyword to extend a class, then yo uneed to set up the super unction that takes the same asrgs as the parent class
+
+Lecture 101 -getters and setters
+    - they come built in, all we do is werite the property like it's a shorthand method, with the keyword get or set before it. 
+        - then we assign the set value to a third variable, ususally the same name with an underscore, then we get that variable with the getter
+        - OR, we can do whatever we want with it.
