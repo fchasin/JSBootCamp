@@ -65,3 +65,34 @@ Lecture 101 -getters and setters
     - they come built in, all we do is werite the property like it's a shorthand method, with the keyword get or set before it. 
         - then we assign the set value to a third variable, ususally the same name with an underscore, then we get that variable with the getter
         - OR, we can do whatever we want with it.
+
+Lecture 105 HTTP requests
+    - can add query string to request w/ a '?' after the url'
+    - async sections are really execllent descriptions, esp 105
+    - status codes get sent back by the srever 
+
+Lecture 107 - Callback Abstraction
+    - initially, wanted to separate code so that the whole logic behind sending request wasn't in the app file
+    - so we separate out into another function, and then call that function in the app file
+       *** - but we can't just use return, because the whole function completes executing before
+       *** we get the data back from the addeventlistener function, which is listenting to the response from the server we're requeting info from
+       so we ues callback pattern. SO 
+        - we pass in a callback function into the request function
+        - then we call this callback within the listener, after the listener has returned. and then we return the data we got back there, form within listener func
+
+Lecture 108
+    - we want async functions when dealing wiht servers, becaues the server can do other things while waiting for the funcition to return
+    - request.open can take a third parameter, which is whether or not async func
+    *** we lock up the UI with a sync request
+    blocking === sync; non-blocking === async
+
+Lecture 110 - Closures
+    - if we declare that soething inside the function has access to something outside of its scope via
+    lexical scoping, it still has access even after that function retunrs
+
+    via closures, we can create private  vairalbes that we can only interact with thru an api. ex createCounter variable
+
+    currying: the process of changing one function that takes in lots of inputs into multiple functions that take in fewer inputs
+
+Lecture 111 - Promises
+    - you can only call resolve/reject once, and only one of them

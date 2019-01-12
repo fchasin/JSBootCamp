@@ -4,15 +4,45 @@ const guessesEl = document.querySelector('#display-guesses');
 
 puzzleEl.textContent = another.puzzle;
 guessesEl.textContent = another.status;
-console.log(another.getStatus());
 
 window.addEventListener('keypress', function(e) {
   const guess = String.fromCharCode(e.charCode);
   another.makeGuess(guess);
   puzzleEl.textContent = another.puzzle;
-  guessesEl.textContent = another.status;
+  guessesEl.textContent = another.statusMessage;
 });
 
+getPuzzle((error, puzzle) => {
+  if (error) {
+    console.log(`Error: ${error}`);
+  } else {
+    console.log(puzzle);
+  }
+});
+
+countryRequest('HR', (error, country) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(country.name);
+  }
+});
+
+// // Making HTTP requets
+
+//
+//
+//
+//
+//
+//
+//
+
+// HTTP (Hypertext Transfer Protocol)
+// Request - what we want to do
+// Response - what was actually done
+
+// Lectures 90's
 // console.log(puzzle.textContent);
 // wordDisplayed.textContent = getPuzzle();
 
