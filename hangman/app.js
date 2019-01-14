@@ -1,32 +1,75 @@
-const another = new Hangman('an other', 6);
+let another = new Hangman('an other', 6);
 const puzzleEl = document.querySelector('#display-word');
 const guessesEl = document.querySelector('#display-guesses');
-
-puzzleEl.textContent = another.puzzle;
-guessesEl.textContent = another.status;
 
 window.addEventListener('keypress', function(e) {
   const guess = String.fromCharCode(e.charCode);
   another.makeGuess(guess);
+  renderGame();
+});
+
+const renderGame = async () => {
   puzzleEl.textContent = another.puzzle;
   guessesEl.textContent = another.statusMessage;
-});
+};
 
-getPuzzle((error, puzzle) => {
-  if (error) {
-    console.log(`Error: ${error}`);
-  } else {
-    console.log(puzzle);
-  }
-});
+const startGame = async () => {
+  const puzzle = await getPuzzle('2');
+  another = new Hangman(puzzle, 5);
+  renderGame();
+};
 
-countryRequest('HR', (error, country) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(country.name);
-  }
-});
+document.querySelector('#reset').addEventListener('click', startGame);
+
+startGame();
+
+// getPuzzle('2')
+//   .then(puzzle => {
+//     console.log(puzzle);
+//   })
+//   .catch(err => {
+//     console.log(`Error: ${error}`);
+//   });
+
+// countryRequest('MX')
+//   .then(countryName => {
+//     console.log(countryName);
+//   })
+//   .catch(err => {
+//     console.log(`Error: ${err}`);
+//   });
+
+// getLocation()
+//   .then(response => {
+//     return countryRequest(response.country);
+//   })
+//   .then(country => {
+//     console.log(country);
+//   });
+
+// getCurrentCountry()
+//   .then(country => {
+//     console.log(country.name);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
+// //fetch api
+// fetch('http://puzzle.mead.io/puzzle', {})
+//   .then(response => {
+//     if (response.status === 200) {
+//       return response.json();
+//     } else {
+//       throw new Error('unable to fetch puzzlez');
+//     }
+//   })
+//   .then(data => {
+//     console.log(data.puzzle);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
 
 // // Making HTTP requets
 

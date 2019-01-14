@@ -96,3 +96,24 @@ Lecture 110 - Closures
 
 Lecture 111 - Promises
     - you can only call resolve/reject once, and only one of them
+    - in requests.js we're defining the function to return a promise(instance) and then we call then on that 
+    - can chain together promises by returning a promise, and then calling .then
+
+Lecture 112 - fetch API
+    - fetch will only resolve if 200 code is received, we don't have to create control flow
+    for HTTP issues
+Lecture 115- promises contd
+    - .then method takes the returned value from the resolve of a promise, and then allows you to do something with it, passed as an arguments
+    - can chain these together to create flow
+    - use a catch error to catch any errors that result from this chaining 
+
+Lecture 117 - async/await
+    - adding async keyword causes a promise to be returned
+    - can add then onto an aync func call to handle the success case (where the promise was resolved), we take
+    in this resolution as an arg, and then we can do whatever we want with that value
+
+    - if promise rejects, then the catch method will run instead. this will reject if we choose to throw an error form
+    the function
+
+    async/await, set a new variable equal to await an async function, and then when the async function reutrns, await will be assigned.
+    then we can treat it synchronously.
